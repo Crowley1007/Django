@@ -10,9 +10,9 @@ Também será demonstrado o processo de configuração do banco de dados Postgre
 Para seguir este guia você pode acessar as branches criadas para cada Aula.
 
 
-## 🔹 Módulo 1 – Introdução e Configuração do Ambiente
+## 🔹 Aula 1 – Introdução ao Django
 
-### 📍 Aula 1 – O que é Django?
+## 📍 O que é Django?
 
 #### 1. História e Propósito do Django
 
