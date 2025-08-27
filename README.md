@@ -93,11 +93,11 @@ O View retorna uma resposta renderizada com o Template.
 
 ### Cronograma das Aulas 
 
-| Aula	                    | Branch |                                               Link |
-|:-------------------------|:------:|-----------:|
-| Aula 1 – O que é Django? |  main  |            |
-| Aula 2                   |        |            |
-| Aula 3                   |        |            |
-| Aula 4                   |        |            |
-| Aula 5                   |        |            |
+| Aula	                                    | Branch |                                                          |
+|:-----------------------------------------|:------:|---------------------------------------------------------:|
+| Aula 1 – O que é Django?                 | aula_1 |        [Link](https://github.com/SANDEISON/curso_django) |
+| Aula 2 - Configuração do Ambiente Django | aula_2 |        [Link](https://github.com/SANDEISON/curso_django) |
+| Aula 3                                   |        |                                                          |
+| Aula 4                                   |        |                                                          |
+| Aula 5                                   |        |                                                          |
 
