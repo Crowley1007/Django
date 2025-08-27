@@ -1,103 +1,135 @@
 # 📘Curso de Django (Python)
 
-Este repositório apresenta um guia detalhado para a instalação e criação de um projeto Django.
+## 🔹 Aula 2 – Configuração do Ambiente Django
 
-Ao longo do material, será desenvolvida uma aplicação capaz de realizar as operações de criação, leitura, atualização e exclusão de dados (CRUD).
-Serão abordados tópicos como a criação de templates HTML, o uso das tags de template do Django para inserção dinâmica de dados, bem como o trabalho com QuerySets para consulta, filtragem e ordenação de informações.
+## 📍 Pré-requisitos
 
-Também será demonstrado o processo de configuração do banco de dados PostgreSQL e as etapas necessárias para a implantação do projeto em produção.
+### 1. Instalação do Python
 
-Para seguir este guia você pode acessar as branches criadas para cada Aula.
+Essa instalação é baseada no sisitema operacional windows
 
+1.1 Acesse ao site oficial:
 
-## 🔹 Aula 1 – Introdução ao Django
+Acesse o site [python.org/downloads](https://www.python.org/downloads/) 
 
-## 📍 O que é Django?
+**1.2 Faça o download do instalador:**
 
-#### 1. História e Propósito do Django
+Clique em download na versão mais recente do Python. 
 
-Origem: Criado em 2003 por desenvolvedores de um jornal online, com a necessidade de construir aplicações web rápidas e seguras.
+**1.3 Execute o instalador:**
 
-Lançamento oficial: 2005, como projeto de código aberto.
+Localize o arquivo (normalmente na pasta "Downloads") e clique duas vezes nele para iniciar o processo de instalação.
 
-Nome: Uma homenagem ao guitarrista de jazz Django Reinhardt.
+**1.4 Configure a instalação:**
 
-Propósito: Facilitar o desenvolvimento rápido de aplicações web robustas e escaláveis, com foco em produtividade, segurança e escalabilidade.
+No tela inicial do instalador, é crucial marcar a opção "Add python.exe to PATH". Isto permite que execute comandos Python diretamente no terminal. 
 
-Diferenciais:
+**1.5 Inicie a instalação:**
 
-Já vem com recursos prontos como autenticação, administração, ORM, sistema de templates etc.
+Clique em "Install Now" (ou "Instalar Agora") para começar a instalação com as configurações padrão. 
 
-Comunidade ativa e ampla documentação.
+**1.6 Conclua a instalação:**
 
-Framework maduro e usado por empresas como Instagram, Pinterest, Disqus e Spotify.
+Aguarde enquanto o instalador completa a instalação do Python. Na tela final, pode aparecer uma opção para "Disable path length limit", que é recomendado que clique. 
 
+**1.7 Verifique a instalação:**
 
-#### 2. Diferença entre Frameworks Web (Flask x Django)
+Para confirmar se tudo foi instalado corretamente, abra o Prompt de Comando (CMD) ou o PowerShell e digite o comando python --version. 
 
-| Aspecto	            |      Flask (Microframework)      | Django (Framework Completo) |
-|:---------------------|:--------------------------------:|----------------------------:|
-| Tamanho              | Minimalista, apenas o essencial  |                Completo, inclui ORM, autenticação, admin etc.   |
-| Flexibilidade        |                Mais liberdade para escolher bibliotecas externas                |                    Estrutura rígida, mas padronizada |
-| Curva de aprendizado |                Mais simples no início                |                     Mais robusto, exige aprendizado da arquitetura MVT |
-| Casos de uso |                APIs pequenas, microsserviços, protótipos rápidos                |                     Sistemas completos, grandes portais e e-commerces |
-| Filosofia |                “Escolha o que usar”                |                     “Pronto para uso” |
+**1.8 Confirme o resultado:**
 
-Resumo:
+Se a instalação foi bem-sucedida, o terminal irá apresentar a versão do Python que foi instalada, como Python 3.x.x
 
-Flask é indicado para projetos menores, onde o desenvolvedor deseja total controle.
-
-Django é ideal para projetos médios e grandes, que precisam de rapidez no desenvolvimento e boas práticas já embutidas.
+Caso tenha algum problema refaça os passos anteriores. 
 
 
-#### 3. Arquitetura MVT (Model–View–Template)
 
-O Django utiliza o padrão MVT, que é uma variação do famoso MVC.
+**Editor de código**
 
-**Model (Modelo)**
+[Visual Studio Code](https://code.visualstudio.com/)
 
-   Responsável pela camada de dados.
+[PyCharm](https://www.jetbrains.com/pt-br/pycharm/download/?section=windows)
 
-   Define tabelas do banco de dados usando classes Python.
+**PIP**
 
-   Trabalha com o ORM (Object-Relational Mapping) do Django.
+É um gerenciador de pacotes do Python, já vem junto com as versões recentes do Python.
 
-   Exemplo: class Produto(models.Model): nome = models.CharField(max_length=100)
+Git (opcional, mas útil para versionamento).
 
-**View (Visão)**
+### 2. Criação de um Ambiente Virtual
 
-   Lida com a lógica de negócio.
+O ambiente virtual serve para isolar as dependências de cada projeto.
 
-   Recebe requisições, processa dados (via modelos) e retorna uma resposta.
+2.1 Abra um editor de código de sua preferencia
 
-   Exemplo: def home(request): return render(request, "index.html")
+2.2 Selecione a pasta onde ira salvar seus projetos
 
-**Template (Modelo de Apresentação)**
+2.3 Abra o terminal
 
-   Responsável pela interface com o usuário.
+2.4 Crie o ambiente virtual digitando o comando no terminal: 
 
-   Usa a linguagem de templates do Django (HTML + tags dinâmicas).
+- python -m venv venv
 
-   Exemplo: < h1>{{ produto.nome }} < /h1>
+2.5 Ative o ambiente virtual:
+- venv\Scripts\activate
+
+2.6 Confirme que o ambiente está ativo (o terminal exibirá (venv) antes do caminho).
+
+Ex: (venv) PS D:\Sandeison\Documents\
 
 
-📌 Fluxo resumido de uma requisição no Django:
+### 3. Por que o .gitignore é importante?
 
-Usuário acessa uma URL.
+**Manter repositórios limpos:**
 
-O View correspondente é acionado.
+Evita que arquivos temporários, logs e outros itens que não são parte do código-fonte se tornem parte do histórico do projeto. 
 
-O View interage com o Model (se necessário).
+**Evitar vazamento de informações confidenciais:**
 
-O View retorna uma resposta renderizada com o Template.
+Ajuda a impedir o envio acidental de chaves de API, credenciais e outras informações sensíveis para o repositório. 
 
-### Cronograma das Aulas 
+**Simplificar a colaboração:**
 
-| Aula	                                    | Branch | Clique no Link |
-|:-----------------------------------------|:------:|--------------------------------------------------:|
-| Aula 1 – O que é Django?                 | aula_1 | [Link](https://github.com/SANDEISON/curso_django) |
-| Aula 2 - Configuração do Ambiente Django | aula_2 | [Link](https://github.com/SANDEISON/curso_django) |
-| Aula 3                                   |        |                                                   |
-| Aula 4                                   |        |                                                   |
-| Aula 5                                   |        |                                                   |
+Ao manter os commits focados no código relevante, a colaboração entre desenvolvedores se torna mais eficiente e menos suscetível a conflitos por arquivos indesejados. 
 
+**Otimizar o controle de versão:**
+
+Reduz o tamanho e o ruído dos repositórios, tornando mais rápida a clonagem, o download e outras operações com o Git. 
+
+
+
+3.1 Gerar arquivos para o git ignore
+
+Link para gerar uma lista de nomes de arquivos para serem ignorados dependendo da linguagem de programação.
+
+[toptal](https://www.toptal.com/developers/gitignore)
+
+3.2 Crie um arquivo .gitignore dentro do repositorio
+
+- Um exemplo pode ser visto dentro deste repositorio.
+
+
+### 4. Importancia do arquivo requeriments.txt no django
+
+O requirements.txt no Django (e em projetos Python em geral) 
+é fundamental porque lista todas as dependências do projeto e suas versões exatas, 
+garantindo que o ambiente de desenvolvimento e produção possa ser reproduzido com exatidão por 
+qualquer membro da equipe, em qualquer sistema. Isso evita problemas de compatibilidade, 
+como o temido "funciona na minha máquina", facilita a colaboração, a automação de deploys e o 
+controle de versões das bibliotecas.
+
+4.1 Criação:
+- Abra o terminal e digite : pip freeze > requirements.txt
+
+    Sera gerado um arquivo no seu projeto requirements.txt
+
+4.2 Instalação:
+
+Caso você esteja em outra maquina e baixe o projeto.
+
+Primeiro você tem que criar o ambiente virtual, siga o passo 2. Criação de um Ambiente Virtual.
+
+Depois no termial você digita : 
+- pip install -r requirements.txt
+
+Ate o momento não instalamos nenhuma dependência no projeto, então o arquivo gerado vai estar vazio.
