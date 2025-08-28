@@ -1,135 +1,205 @@
 # 📘Curso de Django (Python)
 
-## 🔹 Aula 2 – Configuração do Ambiente Django
+## 🔹 Aula 3 – Criação e Estrutura do Projeto em Django
 
 ## 📍 Pré-requisitos
 
-### 1. Instalação do Python
+### 1. Instalação do Django
 
-Essa instalação é baseada no sisitema operacional windows
+1.1 Com o ambiente virtual ativo, instale o Django:
+- pip install django
 
-1.1 Acesse ao site oficial:
+1.2 Verifique se foi instalado corretamente:
+- django-admin --version
 
-Acesse o site [python.org/downloads](https://www.python.org/downloads/) 
+### 2. Criação do Primeiro Projeto Django
 
-**1.2 Faça o download do instalador:**
+2.1 Crie o projeto inicial:
+- django-admin startproject meu_projeto .
 
-Clique em download na versão mais recente do Python. 
+2.2 Estrutura do Projeto:
 
-**1.3 Execute o instalador:**
+    meu_projeto/
+    ├── manage.py
+    └── meu_projeto/
+        ├── __init__.py
+        ├── settings.py
+        ├── urls.py
+        ├── asgi.py
+        └── wsgi.py
 
-Localize o arquivo (normalmente na pasta "Downloads") e clique duas vezes nele para iniciar o processo de instalação.
+- **manage.py**
 
-**1.4 Configure a instalação:**
+    É um utilitário de linha de comando para interagir com o projeto.
+    
+    Permite rodar comandos do Django:
 
-No tela inicial do instalador, é crucial marcar a opção "Add python.exe to PATH". Isto permite que execute comandos Python diretamente no terminal. 
+- **__init__.py**
+  
+  Indica ao Python que esta pasta é um pacote.
 
-**1.5 Inicie a instalação:**
+  Geralmente fica vazio, mas permite inicializações.
 
-Clique em "Install Now" (ou "Instalar Agora") para começar a instalação com as configurações padrão. 
+- **settings.py** 
 
-**1.6 Conclua a instalação:**
+    Arquivo mais importante para configurações.
+    
+    Contém:
+    
+    Configuração do banco de dados.
+    
+    Lista de apps instalados (INSTALLED_APPS).
+    
+    Configuração de idioma e fuso horário.
+    
+    Configurações de templates, middlewares e autenticação.
 
-Aguarde enquanto o instalador completa a instalação do Python. Na tela final, pode aparecer uma opção para "Disable path length limit", que é recomendado que clique. 
+- **urls.py** 
 
-**1.7 Verifique a instalação:**
+    Define o roteamento de URLs da aplicação.
+    
+    Quando o usuário acessa uma rota, o Django procura a view correspondente aqui.
+    
+    📍 Exemplo:
 
-Para confirmar se tudo foi instalado corretamente, abra o Prompt de Comando (CMD) ou o PowerShell e digite o comando python --version. 
+    
+        from django.contrib import admin
+        from django.urls import path
+        
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+        ]
+                
+        Aqui temos a rota /admin, que abre o painel administrativo do Django.
 
-**1.8 Confirme o resultado:**
+- **wsgi.py / asgi.py**
+   
+    WSGI (Web Server Gateway Interface): usado por servidores web tradicionais (Apache, Gunicorn).
+    
+    ASGI (Asynchronous Server Gateway Interface): suporta aplicações assíncronas (WebSockets, tempo real).
+    
+    Normalmente, não alteramos esses arquivos manualmente.
 
-Se a instalação foi bem-sucedida, o terminal irá apresentar a versão do Python que foi instalada, como Python 3.x.x
+### 3. Rodando o Servidor de Desenvolvimento
 
-Caso tenha algum problema refaça os passos anteriores. 
+3.1 Entre na pasta do projeto e rode o servidor:v
+- python manage.py runserver
 
+3.2 A saída será algo como:
+- Starting development server at http://127.0.0.1:8000/
 
+👉 Abra no navegador: http://127.0.0.1:8000
 
-**Editor de código**
+Você verá a página inicial do Django, confirmando que o ambiente está pronto. 
 
-[Visual Studio Code](https://code.visualstudio.com/)
+Para parar o servidor pressione Ctrl + C no terminal.
 
-[PyCharm](https://www.jetbrains.com/pt-br/pycharm/download/?section=windows)
+### 4. Criação e Estrutura de um App no Django
+Além do projeto, o Django organiza funcionalidades em apps.
 
-**PIP**
+4.1 Criando um app:
+- python manage.py startapp blog
 
-É um gerenciador de pacotes do Python, já vem junto com as versões recentes do Python.
+4.2 Estrutura gerada:
 
-Git (opcional, mas útil para versionamento).
+    blog/
+    ├── admin.py
+    ├── apps.py
+    ├── migrations/
+    ├── models.py
+    ├── tests.py
+    └── views.py
 
-### 2. Criação de um Ambiente Virtual
+models.py → Define tabelas e relacionamentos (ORM).
 
-O ambiente virtual serve para isolar as dependências de cada projeto.
+views.py → Funções ou classes que processam requisições.
 
-2.1 Abra um editor de código de sua preferencia
+admin.py → Configuração para aparecer no painel administrativo.
 
-2.2 Selecione a pasta onde ira salvar seus projetos
+migrations/ → Alterações do banco de dados.
 
-2.3 Abra o terminal
-
-2.4 Crie o ambiente virtual digitando o comando no terminal: 
-
-- python -m venv venv
-
-2.5 Ative o ambiente virtual:
-- venv\Scripts\activate
-
-2.6 Confirme que o ambiente está ativo (o terminal exibirá (venv) antes do caminho).
-
-Ex: (venv) PS D:\Sandeison\Documents\
-
-
-### 3. Por que o .gitignore é importante?
-
-**Manter repositórios limpos:**
-
-Evita que arquivos temporários, logs e outros itens que não são parte do código-fonte se tornem parte do histórico do projeto. 
-
-**Evitar vazamento de informações confidenciais:**
-
-Ajuda a impedir o envio acidental de chaves de API, credenciais e outras informações sensíveis para o repositório. 
-
-**Simplificar a colaboração:**
-
-Ao manter os commits focados no código relevante, a colaboração entre desenvolvedores se torna mais eficiente e menos suscetível a conflitos por arquivos indesejados. 
-
-**Otimizar o controle de versão:**
-
-Reduz o tamanho e o ruído dos repositórios, tornando mais rápida a clonagem, o download e outras operações com o Git. 
-
-
-
-3.1 Gerar arquivos para o git ignore
-
-Link para gerar uma lista de nomes de arquivos para serem ignorados dependendo da linguagem de programação.
-
-[toptal](https://www.toptal.com/developers/gitignore)
-
-3.2 Crie um arquivo .gitignore dentro do repositorio
-
-- Um exemplo pode ser visto dentro deste repositorio.
+apps.py → Configurações internas do app.
 
 
-### 4. Importancia do arquivo requeriments.txt no django
+4.3 Registrando o App no Projeto
 
-O requirements.txt no Django (e em projetos Python em geral) 
-é fundamental porque lista todas as dependências do projeto e suas versões exatas, 
-garantindo que o ambiente de desenvolvimento e produção possa ser reproduzido com exatidão por 
-qualquer membro da equipe, em qualquer sistema. Isso evita problemas de compatibilidade, 
-como o temido "funciona na minha máquina", facilita a colaboração, a automação de deploys e o 
-controle de versões das bibliotecas.
+Após criar o app, precisamos registrá-lo no projeto.
 
-4.1 Criação:
-- Abra o terminal e digite : pip freeze > requirements.txt
+No arquivo meu_projeto/settings.py, adicione em INSTALLED_APPS:
 
-    Sera gerado um arquivo no seu projeto requirements.txt
 
-4.2 Instalação:
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'blog',  # app criado
+    ]
 
-Caso você esteja em outra maquina e baixe o projeto.
+### 5. Criando uma View Simples no App
 
-Primeiro você tem que criar o ambiente virtual, siga o passo 2. Criação de um Ambiente Virtual.
+No arquivo blog/views.py:
 
-Depois no termial você digita : 
-- pip install -r requirements.txt
+    from django.http import HttpResponse
+    def home(request):
+        return HttpResponse("<h1>Bem-vindo ao Blog!</h1>")
 
-Ate o momento não instalamos nenhuma dependência no projeto, então o arquivo gerado vai estar vazio.
+###  6. Configurando URLs do App
+
+5.1 Crie o arquivo blog/urls.py:
+
+    from django.urls import path
+    from . import views
+    
+    urlpatterns = [
+        path('', views.home, name='home'),
+    ]
+
+5.2 Agora, conecte o urls.py do app ao urls.py do projeto.
+
+No arquivo meu_projeto/urls.py:
+
+    from django.contrib import admin
+    from django.urls import path, include
+    
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('blog/', include('blog.urls')),  # rota do app blog
+    ]
+    
+
+###  7. Testando no Navegador
+
+7.1 Execute o servidor:
+
+    python manage.py runserver
+
+7.2 Acesse no navegador:
+
+    http://127.0.0.1:8000/blog/
+
+👉 Você verá a mensagem:
+
+  "Bem-vindo ao Blog!"
+
+
+
+Para finalizar esta aula, como adicionamos do Django no projeto, 
+vamos incluir as dependências no arquivo requirements.txt
+
+No terminal digite :
+
+    pip freeze > requirements.txt
+
+
+
+
+
+
+
+
+
+
+
